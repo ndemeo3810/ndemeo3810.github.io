@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WickEditor Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #animation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: #87ceeb; /* Light blue sky */
+        }
+        #wick-animation {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <!-- Embed your WickEditor project here -->
+        <script src="https://cdn.wickeditor.com/1.19.0/wick.js"></script>
+        <div id="wick-animation">
+            <script>
+                var animation = new WickAnimation({
+                    containerId: "wick-animation",
+                    projectPath: "animatedscene/animatedscene3-29-2025_12-59-53.wick",  // Path to your .wick file
+                    autoPlay: true
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>
