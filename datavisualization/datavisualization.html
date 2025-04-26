@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="doughnutChart" width="400" height="400"></canvas>
+    <canvas id="barChart" width="400" height="400"></canvas>
+
+    <script>
+        // Dataset
+        const carSalesData = [
+            { manufacturer: 'Toyota', sales: 120 },
+            { manufacturer: 'Ford', sales: 100 },
+            { manufacturer: 'Chevrolet', sales: 80 },
+            { manufacturer: 'Honda', sales: 60 },
+            { manufacturer: 'BMW', sales: 50 },
+            { manufacturer: 'Nissan', sales: 30 },
+            { manufacturer: 'Volkswagen', sales: 20 }
+        ];
+
+        // Doughnut Chart
+        const doughnutChart = new Chart(document.getElementById('doughnutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: carSalesData.map(data => data.manufacturer),
+                datasets: [{
+                    data: carSalesData.map(data => data.sales),
+                    backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6', '#ff6666'],
+                    hoverBackgroundColor: ['#ff6666', '#66ccff', '#66ff66', '#ff9966', '#ccccff', '#ff99cc', '#ff3333'],
+                    label: 'Car Sales (Units)'
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Car Sales by Manufacturer (by [Nick DeMeo])'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.label}: ${tooltipItem.raw} units`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Horizontal Bar Chart
+        const barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: carSalesData.map(data => data.manufacturer),
+                datasets: [{
+                    label: 'Car Sales (Units)',
+                    data: carSalesData.map(data => data.sales),
+                    backgroundColor: '#ff9999',
+                    borderColor: '#ff6666',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Car Sales by Manufacturer (by [Nick DeMeo])'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.label}: ${tooltipItem.raw} units`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
