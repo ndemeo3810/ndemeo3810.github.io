@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wild Wonders</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registered:', reg.scope))
+          .catch(err => console.error('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Wild Wonders</h1>
+  <canvas id="animalCanvas" width="400" height="300"></canvas>
+  <div id="animalContent">
+    <label for="animalSelect">Choose an animal:</label><br/>
+    <select id="animalSelect"></select>
+    <h2 id="animalTitle"></h2>
+    <p id="animalDescription"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
