@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wild Wonders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    canvas {
+      border: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 2em;
+      color: #2c3e50;
+    }
+    h2 {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wild Wonders</h1>
+  <canvas id="animalCanvas" width="400" height="300"></canvas>
+
+  <div id="animalContent">
+    <label for="animalSelect">Choose an animal:</label><br/>
+    <select id="animalSelect"></select>
+
+    <h2 id="animalTitle"></h2>
+    <p id="animalDescription"></p>
+  </div>
+
+  <script>
+    const animals = [
+      {
+        title: "Lion",
+        description: "The lion is known as the king of the jungle. It lives in the grasslands of Africa and hunts in groups called prides.",
+        image: "assets/images/lion.jpg",
+        audio: "assets/audio/lion.mp3"
+      },
+      {
+        title: "Elephant",
+        description: "Elephants are the largest land animals on Earth. They are known for their intelligence, memory, and strong family bonds.",
+        image: "assets/images/elephant.jpg",
+        audio: "assets/audio/elephant.mp3"
+      },
+      {
+        title: "Dolphin",
+        description: "Dolphins are intelligent marine mammals known for their playful behavior and ability to communicate using clicks and whistles.",
+        image: "assets/images/dolphin.jpg",
+        audio: "assets/audio/dolphin.mp3"
+      }
+    ];
+
+    const canvas = document.getElementById("animalCanvas");
+    const ctx = canvas.getContext("2d");
+    const animalSelect = document.getElementById("animalSelect");
+    const title = document.getElementById("animalTitle");
+    const description = document.getElementById("animalDescription");
+
+    function displayAnimal(index) {
+      const animal = animals[index];
+      title.textContent = animal.title;
+      description.textContent = animal.description;
+
+      const img = new Image();
+      img.src = animal.image;
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      };
+
+      const audio = new Audio(animal.audio);
+      audio.play();
+    }
+
+    animals.forEach((animal, index) => {
+      const option = document.createElement("option");
+      option.value = index;
+      option.textContent = animal.title;
+      animalSelect.appendChild(option);
+    });
+
+    animalSelect.addEventListener("change", () => {
+      displayAnimal(animalSelect.value);
+    });
+
+    // Load first animal by default
+    displayAnimal(0);
+    animalSelect.selectedIndex = 0;
+  </script>
+</body>
+</html>
