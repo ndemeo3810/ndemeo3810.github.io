@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ross Geller - Resume</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .section {
+      padding: 60px 20px;
+    }
+    #hero {
+      padding: 100px 20px;
+      text-align: center;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      display: block;
+    }
+    .dark-mode {
+      background-color: #121212 !important;
+      color: #e0e0e0 !important;
+    }
+    .dark-mode .navbar,
+    .dark-mode footer {
+      background-color: #1f1f1f !important;
+    }
+    .dark-mode .list-group-item {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ross Geller</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#summary">Summary</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#honors">Honors</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="form-check form-switch ms-3 text-white">
+          <input class="form-check-input" type="checkbox" id="darkModeToggle">
+          <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / INTRO -->
+  <section id="hero" class="section bg-light">
+    <h1 class="display-4">Dr. Ross Geller</h1>
+    <p class="lead">Paleontologist | Professor | Dinosaur Enthusiast</p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="section bg-light">
+    <div class="container">
+      <h2>Summary</h2>
+      <p>Dedicated paleontologist and professor with a passion for dinosaurs and ancient history. Experienced in museum curation, academic research, and teaching. Known for my detailed lectures, enthusiasm for fossils, and ability to make prehistory come alive for students.</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2>Education</h2>
+      <ul>
+        <li><strong>Columbia University</strong> – Ph.D. in Paleontology</li>
+        <li><strong>New York University</strong> – B.A. in Anthropology</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section bg-light">
+    <div class="container">
+      <h2>Experience</h2>
+      <ul>
+        <li><strong>Professor of Paleontology</strong>, New York University (2000–Present)</li>
+        <li><strong>Paleontologist</strong>, Museum of Natural History (1995–2000)</li>
+        <li><strong>Guest Lecturer</strong>, Various institutions on dinosaur evolution and fossilization</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Fossil Identification</li>
+        <li class="list-group-item">Public Speaking & Lecturing</li>
+        <li class="list-group-item">Research & Publication</li>
+        <li class="list-group-item">Dinosaur Trivia Champion</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section bg-light">
+    <div class="container">
+      <h2>Portfolio: Data Visualization</h2>
+      <p class="mb-4">Chart.js project showcasing car sales data (by Nick DeMeo)</p>
+      <canvas id="doughnutChart" width="400" height="400"></canvas>
+      <canvas id="barChart" width="400" height="400"></canvas>
+    </div>
+  </section>
+
+  <!-- HONORS -->
+  <section id="honors" class="section">
+    <div class="container">
+      <h2>Activities & Honors</h2>
+      <ul>
+        <li>Keynote Speaker – Paleontology World Conference 2023</li>
+        <li>Published in "Journal of Prehistoric Life"</li>
+        <li>Founding member of the New York Fossil Club</li>
+        <li>Once married three times (maybe not an honor, but definitely notable)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section bg-light">
+    <div class="container">
+      <h2>Contact Info</h2>
+      <p>Email: ross.geller@nyu.edu</p>
+      <p>Phone: (212) 555-0198</p>
+      <p>Location: New York City, NY</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white text-center p-3">
+    © 2025 Dr. Ross Geller. All Rights Reserved.
+  </footer>
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- CHART.JS -->
+  <script>
+    const carSalesData = [
+      { manufacturer: 'Toyota', sales: 120 },
+      { manufacturer: 'Ford', sales: 100 },
+      { manufacturer: 'Chevrolet', sales: 80 },
+      { manufacturer: 'Honda', sales: 60 },
+      { manufacturer: 'BMW', sales: 50 },
+      { manufacturer: 'Nissan', sales: 30 },
+      { manufacturer: 'Volkswagen', sales: 20 }
+    ];
+
+    new Chart(document.getElementById('doughnutChart'), {
+      type: 'doughnut',
+      data: {
+        labels: carSalesData.map(data => data.manufacturer),
+        datasets: [{
+          data: carSalesData.map(data => data.sales),
+          backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6', '#ff6666'],
+          hoverBackgroundColor: ['#ff6666', '#66ccff', '#66ff66', '#ff9966', '#ccccff', '#ff99cc', '#ff3333']
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Car Sales by Manufacturer (by Nick DeMeo)'
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: carSalesData.map(data => data.manufacturer),
+        datasets: [{
+          label: 'Car Sales (Units)',
+          data: carSalesData.map(data => data.sales),
+          backgroundColor: '#ff9999',
+          borderColor: '#ff6666',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          title: {
+            display: true,
+            text: 'Car Sales by Manufacturer (by Nick DeMeo)'
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- DARK MODE TOGGLE -->
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    function setDarkMode(enabled) {
+      body.classList.toggle('dark-mode', enabled);
+      localStorage.setItem('darkMode', enabled);
+    }
+
+    // On load
+    const savedMode = localStorage.getItem('darkMode') === 'true';
+    toggle.checked = savedMode;
+    setDarkMode(savedMode);
+
+    toggle.addEventListener('change', () => {
+      setDarkMode(toggle.checked);
+    });
+  </script>
+
+</body>
+</html>
