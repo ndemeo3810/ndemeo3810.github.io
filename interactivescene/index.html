@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Canvas Scene</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid black;
+            background-size: cover;
+            display: block;
+            margin: auto;
+        }
+        .controls {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Canvas Scene</h1>
+
+    <!-- Background Selection -->
+    <div class="controls">
+        <label><input type="radio" name="background" value="bg1.jpg"> Background 1</label>
+        <label><input type="radio" name="background" value="bg2.jpg"> Background 2</label>
+        <label><input type="radio" name="background" value="bg3.jpg"> Background 3</label>
+    </div>
+
+    <!-- Character Position Slider -->
+    <div class="controls">
+        <label>Move Character: 
+            <input type="range" id="charSlider" min="50" max="450" value="250">
+        </label>
+    </div>
+
+    <!-- Checkbox to Show/Hide Items -->
+    <div class="controls">
+        <label><input type="checkbox" id="item1"> Show Item 1</label>
+        <label><input type="checkbox" id="item2"> Show Item 2</label>
+        <label><input type="checkbox" id="item3"> Show Item 3</label>
+    </div>
+
+    <!-- Buttons to Play Sounds -->
+    <div class="controls">
+        <button onclick="playSound('sound1.mp3')">Play Sound 1</button>
+        <button onclick="playSound('sound2.mp3')">Play Sound 2</button>
+        <button onclick="playSound('sound3.mp3')">Play Sound 3</button>
+    </div>
+
+    <!-- Canvas -->
+    <canvas id="sceneCanvas" width="500" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById("sceneCanvas");
+        const ctx = canvas.getContext("2d");
+        let background = "images/bg1.jpg"; // Default background
+        let charX = 250; // Default character position
+        let showItem1 = false, showItem2 = false, showItem3 = false;
+
+        // Load background image and update canvas
+        function updateCanvas() {
+            let bg = new Image();
+            bg.src = background;
+            bg.onload = function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+                
+                // Draw character (simple circle for now)
+                ctx.fillStyle = "red";
+                ctx.beginPath();
+                ctx.arc(charX, 200, 20, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Draw items if checked
+                ctx.fillStyle = "blue";
+                if (showItem1) ctx.fillRect(100, 250, 20, 20);
+                if (showItem2) ctx.fillRect(200, 250, 20, 20);
+                if (showItem3) ctx.fillRect(300, 250, 20, 20);
+            };
+        }
+
+        // Event Listeners
+        document.querySelectorAll('input[name="background"]').forEach(radio => {
+            radio.addEventListener("change", function () {
+                background = "images/" + this.value;
+                updateCanvas();
+            });
+        });
+
+        document.getElementById("charSlider").addEventListener("input", function () {
+            charX = this.value;
+            updateCanvas();
+        });
+
+        document.getElementById("item1").addEventListener("change", function () {
+            showItem1 = this.checked;
+            updateCanvas();
+        });
+
+        document.getElementById("item2").addEventListener("change", function () {
+            showItem2 = this.checked;
+            updateCanvas();
+        });
+
+        document.getElementById("item3").addEventListener("change", function () {
+            showItem3 = this.checked;
+            updateCanvas();
+        });
+
+        function playSound(file) {
+            let audio = new Audio("sounds/" + file);
+            audio.play().catch(error => console.error("Sound error:", error));
+        }
+
+        // Initial drawing
+        updateCanvas();
+    </script>
+
+</body>
+</html>
